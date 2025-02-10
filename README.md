@@ -26,8 +26,8 @@ Here are the technologies I use and love:
 - Exploring full-stack development, focusing on web applications with Django.
 
 ## 🏆 Achievements & Certifications
-- PSM-I Certified Scrum Master [Scrum Badge](https://img.shields.io/badge/Certified%20Scrum%20Master-green)
-- Python Programming - Self-taught [Python Badge](https://img.shields.io/badge/Python-3.9-blue)
+- PSM-I Certified Scrum Master ![Scrum Badge](https://img.shields.io/badge/Certified%20Scrum%20Master-green)
+- Python Programming - Self-taught ![Python Badge](https://img.shields.io/badge/Python-3.9-blue)
 - C/C++ - 42 Coding School Heilbronn
 - Data Science and Analytics - MBA Thesis on delivery platforms and financial products
 
