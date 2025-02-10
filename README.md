@@ -1,8 +1,5 @@
 <div align="center">
   <h1 style="font-size: 2.5em; color: #e67e22;">Hi, I'm Felipe! 👋</h1>
-  <img src="https://github-readme-stats.vercel.app/api?username=lfpmeloni&show_icons=true&include_all_commits=true&count_private=true&theme=chartreuse-dark&hide_border=true" height="150" alt="stats graph" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=lfpmeloni&layout=compact&card_width=320&langs_count=5&theme=chartreuse-dark&hide_border=true" height="150" alt="languages graph" />
-</div>
 
 ## 🚀 About Me
 
@@ -14,14 +11,14 @@ Here are the technologies I use and love:
 
 <p align="center">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=linux,bash,c,python,godot,vscode,vim,git,github,sql,html,css,django,flask,pandas,numpy,matplotlib" />
+    <img src="https://skillicons.dev/icons?i=linux,bash,c,python,godot,vscode,vim,git,github,html,css,django,flask,pandas,numpy,matplotlib" />
   </a>
 </p>
 
 ## 📈 GitHub Stats
 
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=lfpmeloni&show_icons=true&include_all_commits=true&count_private=true&theme=chartreuse-dark&hide_border=true" height="150" alt="stats graph" />
+  <img src="https://github-readme-stats.vercel.app/api?username=lfpmeloni&count_private=true&hide=prs&show_icons=true&theme=chartreuse-dark&hide_border=true" height="150" alt="stats graph" />
   <img src="https://github-readme-stats.vercel.app/api/top-langs?username=lfpmeloni&layout=compact&card_width=320&langs_count=5&theme=chartreuse-dark&hide_border=true" height="150" alt="languages graph" />
 </div>
 
