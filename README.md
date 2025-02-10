@@ -31,6 +31,10 @@ Here are the technologies I use and love:
 - C/C++ - 42 Coding School Heilbronn
 - Data Science and Analytics - MBA Thesis on delivery platforms and financial products
 
+## 🛠️ Projects
+- [**Notion Job Board Agent**](https://github.com/lfpmeloni/notion-job-board-agent) - An agent that reads job descriptions from Notion, extracts key details using GPT-3.5, and creates a job card on a job application board in Notion.
+- [**PDF Cover Letter Agent**](https://github.com/lfpmeloni/pdf-cover-letter-agent) - A Python tool that automates personalized cover letter creation by extracting job descriptions from Notion and generating tailored PDFs using GPT.
+
 ## 🌍 Languages
 - Portuguese (Native)
 - English (Fluent)
