@@ -11,7 +11,7 @@ Here are the technologies I use and love:
 
 <p align="center">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=linux,bash,c,python,godot,vscode,vim,git,github,html,css,django,flask,pandas,numpy,matplotlib" />
+    <img src="https://skillicons.dev/icons?i=linux,bash,c,c++,c#,python,r,godot,vscode,vim,git,github,flask,docker,mongodb,aws" />
   </a>
 </p>
 
