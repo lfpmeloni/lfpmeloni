@@ -3,7 +3,7 @@
 
 ## 🚀 About Me
 
-I'm Felipe, a passionate software developer and AI enthusiast, focusing on automation and AI-driven solutions. I enjoy working with Python, SQL, and various frameworks to automate processes and create innovative solutions. I’m constantly learning new technologies to stay ahead in the fast-evolving tech landscape.
+I'm Felipe, a passionate software engineer and AI enthusiast, focusing on automation and AI-driven solutions. I enjoy working with Python, C, SQL, and various frameworks to automate processes and create innovative solutions. I’m constantly learning new technologies to stay ahead in the fast-evolving tech landscape.
 
 ## 💻 Tech Stack
 
@@ -11,9 +11,10 @@ Here are the technologies I use and love:
 
 <p align="center">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=linux,bash,c,c++,c#,python,r,godot,vscode,vim,git,github,flask,docker,mongodb,aws" />
+    <img src="https://skillicons.dev/icons?i=linux,bash,c,cpp,c#,python,r,sql,html,css,godot,vscode,vim,git,github,aws,docker,flask,django,mongodb,postgres,js,react,angular,vue" />
   </a>
 </p>
+
 
 ## 📈 GitHub Stats
 
