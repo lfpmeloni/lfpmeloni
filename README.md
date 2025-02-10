@@ -10,7 +10,7 @@ Here are the technologies I use and love:
 
 <p align="center">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=linux,bash,c,python,godot,vscode,vim,git,github,flask,docker,mongodb,aws,r,cpp,c#,postgres,sql,html,css,django,js,react,angular,vue" />
+    <img src="https://skillicons.dev/icons?i=linux,bash,python,r,c,cpp,cs,vscode,vim,git,github,flask,django,docker,mongodb,aws" />
   </a>
 </p>
 
@@ -24,6 +24,25 @@ Here are the technologies I use and love:
 - AI and Machine Learning concepts, especially in automation and predictive models.
 - Deepening knowledge in Python frameworks and libraries like TensorFlow, PyTorch, and Hugging Face.
 - Exploring full-stack development, focusing on web applications with Django.
+
+## 🏆 Achievements & Certifications
+- PSM-I Certified Scrum Master
+- Python Programming - Self-taught
+- C/C++ - 42 Coding School Heilbronn
+- Data Science and Analytics - MBA Thesis on delivery platforms and financial products
+
+## 🎯 GitHub Activity
+![GitHub Activity](https://activity-graph.herokuapp.com/graph?username=lfpmeloni&theme=github)
+
+## 🏅 Badges
+![Python Badge](https://img.shields.io/badge/Python-3.9-blue)
+![Scrum Badge](https://img.shields.io/badge/Certified%20Scrum%20Master-green)
+
+## 🌍 Languages
+- Portuguese (Native)
+- English (Fluent)
+- German (Intermediate)
+- Spanish (Basic)
 
 ## 📫 How to reach me
 - LinkedIn: [Felipe Meloni](https://www.linkedin.com/in/lfpmeloni/)
