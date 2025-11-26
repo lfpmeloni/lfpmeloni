@@ -32,9 +32,3 @@ Experienced Software Engineer and Certified Scrum Master with 6+ years of Python
 
 ## Contact
 - LinkedIn: [Felipe Meloni](https://www.linkedin.com/in/lfpmeloni/)
-
-## GitHub Stats
-<div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=lfpmeloni&count_private=true&hide=prs&show_icons=true&theme=chartreuse-dark&hide_border=true" height="150" alt="stats graph" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=lfpmeloni&layout=compact&card_width=320&langs_count=5&theme=chartreuse-dark&hide_border=true" height="150" alt="languages graph" />
-</div>
