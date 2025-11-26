@@ -1,45 +1,40 @@
 <div align="center">
-  <h1 style="font-size: 2.5em; color: #e67e22;">Hi, I'm Felipe! 👋</h1>
+  <h1 style="font-size: 2.5em; color: #e67e22;">Felipe Meloni</h1>
 </div>
 
-## 🚀 About Me
-I'm Felipe, a passionate software engineer and AI enthusiast, focusing on automation and AI-driven solutions. I enjoy working with Python, C, SQL, and various frameworks to automate processes and create innovative solutions. I’m constantly learning new technologies to stay ahead in the fast-evolving tech landscape.
+## About
+Experienced Software Engineer and Certified Scrum Master with 6+ years of Python development, 10+ years of industry experience across fintech, SaaS, and digital operations. I specialize in building scalable software solutions, automating workflows, and leading cross-functional teams. My background combines engineering, AI-driven automation, and business strategy, reinforced by an MBA in Data Science & Analytics.
 
-## 💻 Tech Stack
-Here are the technologies I use and love:
+## Tech Stack
 
 <p align="center">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=linux,bash,python,r,c,cpp,cs,vscode,git,github,flask,django,docker,mongodb,aws" />
+    <img src="https://skillicons.dev/icons?i=python,r,c,cpp,cs,linux,bash,vscode,git,github,flask,django,docker,aws,azure" />
   </a>
 </p>
 
-## 📈 GitHub Stats
-<div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=lfpmeloni&count_private=true&hide=prs&show_icons=true&theme=chartreuse-dark&hide_border=true" height="150" alt="stats graph" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=lfpmeloni&layout=compact&card_width=320&langs_count=5&theme=chartreuse-dark&hide_border=true" height="150" alt="languages graph" />
-</div>
+## Focus Areas
+- Backend development for scientific and enterprise environments  
+- AI-driven workflow automation and multi-agent systems  
+- Distributed architectures and process automation  
+- LIMS/GMP systems and enterprise-grade tooling  
 
-## 🌱 Currently Learning
-- AI and Machine Learning concepts, especially in automation and predictive models.
-- Deepening knowledge in Python frameworks and libraries like TensorFlow, PyTorch, and Hugging Face.
-- Exploring full-stack development, focusing on web applications with Django.
-
-## 🏆 Achievements & Certifications
+## Certifications
+- MBA Data Science and Analytics - MBA Thesis on delivery platforms and financial products
 - PSM-I Certified Scrum Master ![Scrum Badge](https://img.shields.io/badge/Certified%20Scrum%20Master-green)
-- Python Programming - Self-taught ![Python Badge](https://img.shields.io/badge/Python-3.9-blue)
-- C/C++ - 42 Coding School Heilbronn
-- Data Science and Analytics - MBA Thesis on delivery platforms and financial products
+- 42 Coding School Heilbronn - C/C++ and systems programming curriculum  
 
-## 🛠️ Projects
-- [**Notion Job Board Agent**](https://github.com/lfpmeloni/notion-job-board-agent) - An agent that reads job descriptions from Notion, extracts key details using GPT-3.5, and creates a job card on a job application board in Notion.
-- [**PDF Cover Letter Agent**](https://github.com/lfpmeloni/pdf-cover-letter-agent) - A Python tool that automates personalized cover letter creation by extracting job descriptions from Notion and generating tailored PDFs using GPT.
-
-## 🌍 Languages
+## Languages
 - Portuguese (Native)
 - English (Fluent)
 - German (Intermediate)
 - Spanish (Basic)
 
-## 📫 How to reach me
+## Contact
 - LinkedIn: [Felipe Meloni](https://www.linkedin.com/in/lfpmeloni/)
+
+## GitHub Stats
+<div align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=lfpmeloni&count_private=true&hide=prs&show_icons=true&theme=chartreuse-dark&hide_border=true" height="150" alt="stats graph" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=lfpmeloni&layout=compact&card_width=320&langs_count=5&theme=chartreuse-dark&hide_border=true" height="150" alt="languages graph" />
+</div>
