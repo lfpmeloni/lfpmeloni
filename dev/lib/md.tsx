@@ -137,7 +137,7 @@ function parseLine(raw: string, n: number, notes: Notes, refs: Set<string>): Lin
     return {
       className: "line-fn",
       id: `fn-${id}`,
-      hang: 2,
+      hang: id.length + 4,
       content: (
         <>
           <span className="t-fnmark">[^{id}]</span> {inline(text, key, notes)}
