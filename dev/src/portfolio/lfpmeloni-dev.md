@@ -15,7 +15,7 @@ I also wanted the site itself to show how I work: plain files, version control, 
 
 ## Solution
 
-Every page is a `.md` file in `dev/src/`. The site shows the Markdown **source**, with syntax highlighting, line numbers and clickable links, inside a file-browser layout: a tree on the left, the document in the middle, its sections on the right. URLs are the file paths. `/llms.txt`[^llms-txt] serves the same map to machines, and [AGENTS.md](/AGENTS.md) talks to them directly.
+Every page is a `.md` file in `dev/src/`. The site shows the Markdown **source**, with syntax highlighting, line numbers and clickable links, inside a file-browser layout: a tree on the left, the document in the middle, its sections on the right. URLs are the file paths. `/llms.txt`[^1] serves the same map to machines, and [AGENTS.md](/AGENTS.md) talks to them directly.
 
 Publishing is: edit a `.md` file, push, Vercel rebuilds.
 
@@ -40,13 +40,13 @@ Publishing is: edit a `.md` file, push, Vercel rebuilds.
 
 ## Engineering decisions
 
-- **No Markdown library.** A renderer's whole job is to hide the syntax, and I wanted the opposite. A small line tokenizer[^tokenizer] keeps every `#`, `**` and `-` visible and only adds color, anchors and links.
-- **Fully static.**[^static-generation] Every page is generated at build time from the files. There's no server work per request and nothing to keep alive.
-- **The source is never hard-wrapped.** One line per paragraph or list item, and the browser does the wrapping, with hanging indents[^hanging-indent] for list items. Code fences are the exception and scroll horizontally instead, so diagrams keep their shape.
-- **Durations are computed, never typed.** Date ranges like `May 2026 - Present` get their length shown as a dimmed inlay hint[^inlay-hint], the way an editor shows virtual text. Ranges ending in "Present" are recalculated in the browser, so the resume doesn't go stale between deploys.
-- **Two themes, one set of tokens.** Night and day are VS Code's default Dark Modern and Light Modern colors, the editor most visitors already know. A tiny inline script applies the saved theme before first paint, so there's no flash[^theme-flash].
-- **My terminal font.** Hack Nerd Font Mono[^nerd-font], self-hosted and subset[^subsetting] to what the site uses (about 40 KB per weight). The header icons are Nerd Font glyphs, so there's no icon library.
-- **SEO from the content itself.** Each page's first `>` line is its meta description. Canonical URLs[^canonical], Open Graph[^open-graph], JSON-LD[^json-ld], sitemap and robots all come from one site-URL setting, and preview deployments are marked noindex[^noindex]. `/llms-full.txt` gives models every page in one file.
+- **No Markdown library.** A renderer's whole job is to hide the syntax, and I wanted the opposite. A small line tokenizer[^2] keeps every `#`, `**` and `-` visible and only adds color, anchors and links.
+- **Fully static.**[^3] Every page is generated at build time from the files. There's no server work per request and nothing to keep alive.
+- **The source is never hard-wrapped.** One line per paragraph or list item, and the browser does the wrapping, with hanging indents[^4] for list items. Code fences are the exception and scroll horizontally instead, so diagrams keep their shape.
+- **Durations are computed, never typed.** Date ranges like `May 2026 - Present` get their length shown as a dimmed inlay hint[^5], the way an editor shows virtual text. Ranges ending in "Present" are recalculated in the browser, so the resume doesn't go stale between deploys.
+- **Two themes, one set of tokens.** Night and day are VS Code's default Dark Modern and Light Modern colors, the editor most visitors already know. A tiny inline script applies the saved theme before first paint, so there's no flash[^6].
+- **My terminal font.** Hack Nerd Font Mono[^7], self-hosted and subset[^8] to what the site uses (about 40 KB per weight). The header icons are Nerd Font glyphs, so there's no icon library.
+- **SEO from the content itself.** Each page's first `>` line is its meta description. Canonical URLs[^9], Open Graph[^10], JSON-LD[^11], sitemap and robots all come from one site-URL setting, and preview deployments are marked noindex[^12]. `/llms-full.txt` gives models every page in one file.
 - **Analytics without cookies.** Vercel Web Analytics and Speed Insights: page views, referrers and Core Web Vitals, counted with a daily-rotating anonymous hash instead of a cookie, so there's no consent banner.
 
 ### What broke and how I fixed it
@@ -71,16 +71,16 @@ Publishing is: edit a `.md` file, push, Vercel rebuilds.
 
 ## Glossary for nerds
 
-[^llms-txt]: **llms.txt** - a proposed standard: a Markdown file at a site's root that gives AI models a map of its content. Here: the whole site is Markdown already, so it comes almost for free.
-[^app-router]: **App Router** - Next.js's file-based routing, where folders become URLs. Here: one catch-all route serves every Markdown file and folder.
-[^tokenizer]: **Tokenizer** - code that splits text into typed pieces, such as headings, links and code, without interpreting them. Here: it colors the Markdown syntax instead of hiding it.
-[^static-generation]: **Static generation** - every page is built to HTML at deploy time instead of on each request. Here: nothing runs per visit, so pages are fast and hosting is free.
-[^hanging-indent]: **Hanging indent** - wrapped lines start under the text, not under the bullet. Here: long list items stay readable on phones.
-[^inlay-hint]: **Inlay hint / virtual text** - text an editor draws next to the code without it being part of the file. Here: computed durations appear after date ranges without being in the Markdown.
-[^theme-flash]: **Theme flash (FOUC)** - a page briefly showing the wrong theme or unstyled content before its scripts run. Here: a tiny inline script sets the theme before the first paint.
-[^nerd-font]: **Nerd Font** - a programming font patched with thousands of icons. Here: the header icons are font characters, so no icon library is loaded.
-[^subsetting]: **Font subsetting** - removing the characters a site never uses from a font file. Here: about 40 KB per weight instead of megabytes.
-[^canonical]: **Canonical URL** - the one official address of a page, declared to search engines. Here: `/` and `/README.md` are the same page and shouldn't compete.
-[^open-graph]: **Open Graph** - meta tags that set the title, text and image shown when a link is shared on LinkedIn, Slack or WhatsApp. Here: every page gets its own title and description in the preview.
-[^json-ld]: **JSON-LD** - structured data in a script tag that tells search engines what a page is about: a person, a project, a service. Here: Google and AI search can connect the pages to me and my profiles.
-[^noindex]: **noindex** - a tag telling search engines not to list a page. Here: preview deployments and unfinished pages stay out of search.
+[^1] llms.txt: A proposed standard: a Markdown file at a site's root that gives AI models a map of its content. Here: the whole site is Markdown already, so it comes almost for free.
+[^2] Tokenizer: Code that splits text into typed pieces, such as headings, links and code, without interpreting them. Here: it colors the Markdown syntax instead of hiding it.
+[^3] Static generation: Every page is built to HTML at deploy time instead of on each request. Here: nothing runs per visit, so pages are fast and hosting is free.
+[^4] Hanging indent: Wrapped lines start under the text, not under the bullet. Here: long list items stay readable on phones.
+[^5] Inlay hint / virtual text: Text an editor draws next to the code without it being part of the file. Here: computed durations appear after date ranges without being in the Markdown.
+[^6] Theme flash (FOUC): A page briefly showing the wrong theme or unstyled content before its scripts run. Here: a tiny inline script sets the theme before the first paint.
+[^7] Nerd Font: A programming font patched with thousands of icons. Here: the header icons are font characters, so no icon library is loaded.
+[^8] Font subsetting: Removing the characters a site never uses from a font file. Here: about 40 KB per weight instead of megabytes.
+[^9] Canonical URL: The one official address of a page, declared to search engines. Here: `/` and `/README.md` are the same page and shouldn't compete.
+[^10] Open Graph: Meta tags that set the title, text and image shown when a link is shared on LinkedIn, Slack or WhatsApp. Here: every page gets its own title and description in the preview.
+[^11] JSON-LD: Structured data in a script tag that tells search engines what a page is about: a person, a project, a service. Here: Google and AI search can connect the pages to me and my profiles.
+[^12] noindex: A tag telling search engines not to list a page. Here: preview deployments and unfinished pages stay out of search.
+[^13] App Router: Next.js's file-based routing, where folders become URLs. Here: one catch-all route serves every Markdown file and folder.

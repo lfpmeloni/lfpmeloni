@@ -24,8 +24,8 @@ const INLINE = new RegExp(
   "g",
 );
 
-/** A footnote definition line: `[^id]: text`. Used for the "Glossary for nerds" sections. */
-const FOOTNOTE = /^\[\^([a-z0-9-]+)\]:\s+(.*)$/;
+/** A footnote definition line: `[^1] Term: text`. Used for the "Glossary for nerds" sections. */
+const FOOTNOTE = /^\[\^([a-z0-9-]+)\]:?\s+(.*)$/;
 
 /** Footnote id -> plain definition text, so references can show it on hover. */
 type Notes = Map<string, string>;
@@ -140,7 +140,7 @@ function parseLine(raw: string, n: number, notes: Notes, refs: Set<string>): Lin
       hang: 2,
       content: (
         <>
-          <span className="t-fnmark">[^{id}]:</span> {inline(text, key, notes)}
+          <span className="t-fnmark">[^{id}]</span> {inline(text, key, notes)}
           {/* Terms that only appear inside diagrams have no reference to jump back to. */}
           {refs.has(id) && (
             <>

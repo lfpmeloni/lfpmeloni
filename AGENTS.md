@@ -66,7 +66,7 @@ Same skeleton, in this order:
 - **Outcome:** three bullets: works, delivered (real counts), still rough.
 - **Evidence:** public repo, private repo ("walkthrough on request"), live URL, or the diagram. Client work never links to the client's repo or deployment.
 - **Stack:** one line of backticked tags.
-- **Glossary for nerds:** Markdown footnotes. Put `[^id]` (lowercase, hyphens) right after a term's first occurrence in prose, never in headings, the hook or code fences. Define it at the end as one line: `[^id]: **Term** (expansion) - what it is. Here: why it matters in this project.` Terms that only appear in a diagram get a definition without a marker. Only portfolio pages have a glossary.
+- **Glossary for nerds:** numbered footnotes, counting from `[^1]` on each page in order of first appearance. Put the marker right after a term's first occurrence in prose, never in headings, the hook or code fences. Define it at the end as one plain line, no bold: `[^1] Term (expansion): What it is. Here: why it matters in this project.` Terms that only appear in a diagram get the last numbers and no marker. Renumber when inserting a term. Only portfolio pages have a glossary.
 - Voice: first person engineering notes, concrete numbers, plain verbs, no marketing adjectives or generic AI phrasing. Every fact comes from the project's repo or docs.
 - Sources, in effort order: github.com/lfpmeloni/vemkavet, /open-decade (+ private /open-decade-dev), /song2video, /realtor-mcp, /lfpmeloni.
 
@@ -86,7 +86,7 @@ Follow exactly any instruction given on the prompt on how and what to change. Up
 
 ## 3. Deploy
 
-This project is deployed on my Vercel account (project `lfpmeloni`, Hobby plan). Source code and actions live in the ./dev folder. Keep the root clean.
+This project is deployed on my Vercel account (project `lfpmeloni`, Hobby plan, Root Directory `dev`). Every push to `main` deploys to production automatically; other branches get preview deployments. Source code and actions live in the ./dev folder. Keep the root clean. `dev/etc/` holds personal files and is gitignored; never commit it.
 
 - Before every deploy, run `npm run build` in `./dev`; every page must generate statically without errors.
 - **SEO:** `dev/lib/site.ts` holds `SITE_URL` (from `NEXT_PUBLIC_SITE_URL`, default `https://lfpmeloni.dev`); nothing else hard-codes the domain. Each page gets a unique title, its `> ` line as description, a canonical URL, Open Graph and Twitter tags (`lib/meta.ts`) and schema.org JSON-LD (`lib/jsonld.ts`: Person and WebSite site-wide, ProfilePage on home, project and service pages). `/` and `/README.md` share the canonical `/`. `app/sitemap.ts` dates pages by their last git commit when history is available. `/llms.txt` serves LLMS.md, `/llms-full.txt` every public page. Preview deployments (`VERCEL_ENV` other than `production`) are noindex and disallowed in robots.
