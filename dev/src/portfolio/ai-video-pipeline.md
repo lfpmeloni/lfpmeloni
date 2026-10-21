@@ -1,6 +1,6 @@
 # ai-video-pipeline.md
 
-> song2video: a private studio that turns an MP3 song, a narration track or a written script into a finished, subtitled 16:9 video, built for a client. The same engine now makes realtor-led property tours.
+> song2video: a deployed, private AI video studio for music, narration and scripts, built for a client. Its property-tour extension is currently in pilot.
 
 - Status: deployed for the client, property-tour workflow in pilot
 - Period: October 2026 - Present

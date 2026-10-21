@@ -8,13 +8,11 @@ Open to: permanent roles, fixed-term contracts and freelance projects. Hiring? R
 
 ## Projects
 
-| Project | What it is | Main competency demonstrated |
-|---|---|---|
-| [vemkavet](/PORTFOLIO/veterinary-marketplace.md) | At-home vet visits marketplace, live in São Paulo | Full-stack architecture, security, payments, operations |
-| [open-decade](/PORTFOLIO/financial-portfolio-agents.md) | Local financial analysis toolkit for any AI agent | Agent tooling, deterministic financial calculations, data integrity |
-| [song2video](/PORTFOLIO/ai-video-pipeline.md) | Song or script in, finished video out (client work) | Multimodal pipelines, durable workflows, external services |
-| [realtor-mcp](/PORTFOLIO/real-estate-mcp.md) | Cited US housing data for AI assistants (client work) | Python, MCP, data engineering, deployment automation |
-| [lfpmeloni.dev](/PORTFOLIO/lfpmeloni-dev.md) | This website, as a project | Next.js, static content systems, accessibility and SEO |
+- [vemkavet](/PORTFOLIO/veterinary-marketplace.md): at-home vet visits marketplace, live in São Paulo. Shows full-stack architecture, security, payments, operations.
+- [open-decade](/PORTFOLIO/financial-portfolio-agents.md): local financial analysis toolkit for any AI agent. Shows agent tooling, deterministic financial calculations, data integrity.
+- [song2video](/PORTFOLIO/ai-video-pipeline.md): a deployed, private AI video studio for a client; property tours in pilot. Shows multimodal pipelines, durable workflows, external services.
+- [realtor-mcp](/PORTFOLIO/real-estate-mcp.md): cited US housing data for AI assistants (client work). Shows Python, MCP, data engineering, deployment automation.
+- [lfpmeloni.dev](/PORTFOLIO/lfpmeloni-dev.md): this website, as a project. Shows Next.js, static content systems, accessibility and SEO.
 
 ## More
 
@@ -25,4 +23,4 @@ Open to: permanent roles, fixed-term contracts and freelance projects. Hiring? R
 
 ## Why Markdown
 
-Markdown is readable by humans and straightforward for AI tools to process. Keeping content in plain-text files gives this site one source of truth for its pages, machine-readable exports (`/llms.txt`, `/llms-full.txt`) and version history. What you see is the source file, styled for reading.
+Markdown keeps the content readable for both developers and AI tools. The website renders its source files for people and makes the same underlying content available through machine-readable exports (`/llms.txt`, `/llms-full.txt`).

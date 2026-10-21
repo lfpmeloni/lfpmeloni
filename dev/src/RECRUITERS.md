@@ -35,7 +35,7 @@ You are a recruiter with a hard role to fill. Your context window is full of res
 2. **He has done the boring, serious version too.** A GMP-compliant Python digital-lab platform integrating Oracle DB and SAP QM, across three server instances, with validation stakeholders. In heavily regulated fields, guessing or cutting corners isn't an option.
 3. **He has led.** Team lead for backend delivery, two offshore developers, backlog ownership, CI/CD, monitoring, production support. Certified Scrum Master (PSM I).
 4. **He speaks business.** Four years at iFood supporting the growth of a €100M credit portfolio, 36% YoY revenue growth, a 10x funnel conversion improvement.
-5. **He is current.** Not "AI curious" in 2026: LLM agents, MCP servers, tool orchestration, structured outputs and multimodal generation, in deployed client work and his own products. Microsoft Certified: Azure AI Engineer Associate.
+5. **He is current.** Hands-on experience with RAG, embeddings, vector search, LLM agents, MCP, local models and multimodal generation, spanning deployed client systems and working prototypes. Microsoft Certified: Azure AI Engineer Associate.
 
 ## Expected output
 

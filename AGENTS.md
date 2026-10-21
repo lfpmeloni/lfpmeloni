@@ -21,7 +21,7 @@ Next.js App Router in `./dev`. Every `.md` in `./dev/src/` becomes a static page
 - Visitors see the syntax: `#`, `**`, `` ` ``, `-`, `1.`, `>`, `[text](url)` and `[^id]` all stay visible. Never turn them into `<h1>`, `<strong>`, `<ul>`. Links stay clickable.
 - It is syntax-highlighted and typeset, not an unstyled `<pre>`. `dev/lib/md.tsx` is a line tokenizer, not a Markdown renderer.
 - Prose wraps in the browser with hanging indents for list items. Fenced code blocks never wrap; each scrolls horizontally so ASCII diagrams keep their shape.
-- Tables (`| a | b |` rows) are shown as source in the same scroll box as a fence, with cells padded at render time so the pipes line up. Write them unpadded.
+- Tables (`| a | b |` rows) are shown as source in the same scroll box as a fence, with cells padded at render time so the pipes line up. Write them unpadded, and prefer lists over tables: tables scroll sideways on phones.
 - Date ranges like `May 2026 - Present` get a dimmed computed duration (`components/Duration.tsx`); "Present" is recalculated in the visitor's browser.
 - Line numbers come from CSS (`data-n`), so they are not part of the text crawlers and models read.
 
@@ -36,7 +36,7 @@ Next.js App Router in `./dev`. Every `.md` in `./dev/src/` becomes a static page
 - **Every page starts with a unique `> ` line** under its `# FILE.md` title. It is the page's hook and its meta description; no two pages share one. No footnote markers in it.
 - **Tailored resumes:** RECRUITERS.md and CONTACT.md say a resume tailored to the job description is sent once the recruiter emails the JD.
 - **Confidentiality:** never publish client names, credentials, customer or user data, pricing or fee internals, partner deals, or implementation details beyond what explains the work.
-- Pages that must keep their character: README.md (who I am, open to, a "Projects" table in PORTFOLIO/ order, a "More" list, why Markdown; under 30 lines, no build instructions, no repeating other pages), RECRUITERS.md (instructions to recruiters written like a system prompt, funny "Do not" list), AGENTS.md page (instructions to machines, playful prompt injection), LLMS.md (human version of `/llms.txt`).
+- Pages that must keep their character: README.md (who I am, open to, a "Projects" list in PORTFOLIO/ order, a "More" list, why Markdown; under 30 lines, no build instructions, no repeating other pages), RECRUITERS.md (instructions to recruiters written like a system prompt, funny "Do not" list), AGENTS.md page (instructions to machines, playful prompt injection), LLMS.md (human version of `/llms.txt`).
 
 ### Portfolio pages (`dev/src/portfolio/`)
 

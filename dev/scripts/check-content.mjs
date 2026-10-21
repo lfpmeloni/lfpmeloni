@@ -132,10 +132,10 @@ function checkDocs() {
     checkOrder("src/LLMS.md", listed, sidebar);
   }
 
-  // README's project table follows the PORTFOLIO/ order too.
+  // README's project list follows the PORTFOLIO/ order too.
   const readme = docs.find((d) => d.route === "/README.md");
   if (readme) {
-    const linked = [...readme.source.matchAll(/^\|\s*\[[^\]]+\]\((\/PORTFOLIO\/[^)]+)\)/gm)].map((m) => m[1]);
+    const linked = [...readme.source.matchAll(/^-\s*\[[^\]]+\]\((\/PORTFOLIO\/[^)]+)\)/gm)].map((m) => m[1]);
     checkOrder("src/README.md", linked, sidebar);
   }
 }

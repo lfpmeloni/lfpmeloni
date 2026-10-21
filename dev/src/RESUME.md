@@ -1,6 +1,6 @@
 # RESUME.md
 
-> Full CV of Felipe Meloni: experience, education, certifications and languages. A version tailored to your job description is one email away.
+> Recruiters: email me the job description at mail@lfpmeloni.dev and I'll gladly reply with a CV tailored to it.
 
 Felipe Meloni
 
@@ -30,8 +30,8 @@ Germany (remote)
 
 **vemkavet**, at-home veterinary marketplace, founder-engineer: [veterinary-marketplace.md](/PORTFOLIO/veterinary-marketplace.md)
 
-- Took the full loop from signup to booking, PIX or card payment, visit, medical record, review and payout to production as solo founder-engineer, live since July 2026 as an invite-only beta, on TypeScript, Next.js, Supabase/PostgreSQL with row-level security, Pagar.me and Vercel.
-- Delivered ~150 commits, 62 migrations, ~290 unit tests and 5 SQL test harnesses behind one release workflow from CI to promotion. Development runs on Claude Code with per-area skills, project rules and hooks that block unsafe database and secret operations; an AI vet copilot is on the roadmap.
+- Built and deployed a full-stack veterinary marketplace with secure booking, payments, medical records and automated release workflows, live in production since July 2026 as an invite-only beta (TypeScript, Next.js, Supabase/PostgreSQL, Pagar.me, Vercel).
+- Used AI-assisted development with project-specific skills, guardrails and review processes (Claude Code); AI product features are deferred, with an AI vet copilot on the roadmap.
 
 **realtor-mcp**, US housing-market data for AI assistants, freelance for a private client (September 2026 - October 2026): [real-estate-mcp.md](/PORTFOLIO/real-estate-mcp.md)
 
@@ -155,5 +155,3 @@ Bachelor of Science (B.S.), Science and Technology · 2010 - 2014
 - [LinkedIn](https://www.linkedin.com/in/lfpmeloni)
 - [GitHub](https://github.com/lfpmeloni)
 - [PORTFOLIO/](/PORTFOLIO/)
-
-A PDF tailored to your job description is available on request: email the JD to mail@lfpmeloni.dev.
