@@ -1,17 +1,18 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { Doc, TreeNode } from "@/lib/content";
-import { EMAIL } from "@/lib/site";
+import { EMAIL, EMAIL_LIVE, GITHUB, LINKEDIN } from "@/lib/site";
 
 /** Glyphs come from Hack Nerd Font Mono (self-hosted in public/fonts). */
-const LINKS = [
-  { icon: "\uf09b", label: "GitHub", href: "https://github.com/lfpmeloni" },
-  { icon: "\uf0e1", label: "LinkedIn", href: "https://www.linkedin.com/in/lfpmeloni" },
-  { icon: "\uf0e0", label: EMAIL, href: `mailto:${EMAIL}` },
-];
+const GITHUB_LINK = { icon: "\uf09b", label: "GitHub", href: GITHUB };
+const LINKEDIN_LINK = { icon: "\uf0e1", label: "LinkedIn", href: LINKEDIN };
+const EMAIL_LINK = { icon: "\uf0e0", label: EMAIL, href: `mailto:${EMAIL}` };
+
+/** Until the mailbox is live, LinkedIn is the primary contact and email stays out of the header. */
+const LINKS = EMAIL_LIVE ? [GITHUB_LINK, LINKEDIN_LINK, EMAIL_LINK] : [LINKEDIN_LINK, GITHUB_LINK];
 
 type Theme = "dark" | "light";
 
@@ -38,7 +39,9 @@ function ThemeToggle() {
       aria-label={theme === "light" ? "Switch to night mode" : "Switch to day mode"}
       title={theme === "light" ? "night mode" : "day mode"}
     >
-      <span className="glyph">{theme === "light" ? "\uf186" : "\uf185"}</span>
+      <span className="glyph" aria-hidden="true">
+        {theme === "light" ? "\uf186" : "\uf185"}
+      </span>
     </button>
   );
 }
@@ -92,21 +95,35 @@ export default function Shell({
 }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const burger = useRef<HTMLButtonElement>(null);
   const crumbs = crumbsFor(pathname);
 
   useEffect(() => setOpen(false), [pathname]);
+
+  // Escape closes the mobile file browser and hands focus back to the button that opened it.
+  useEffect(() => {
+    if (!open) return;
+    function onKey(e: KeyboardEvent) {
+      if (e.key !== "Escape") return;
+      setOpen(false);
+      burger.current?.focus();
+    }
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [open]);
 
   return (
     <>
       <header className="top">
         <div className="top-left">
           <button
+            ref={burger}
             className="burger"
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-label="Toggle file browser"
           >
-            {open ? "✕" : "☰"}
+            <span aria-hidden="true">{open ? "✕" : "☰"}</span>
           </button>
           <Link href="/" className="brand">
             lfpmeloni.dev/
@@ -164,14 +181,14 @@ export default function Shell({
                 </Link>
               ))}
               <a
-                href="https://www.linkedin.com/in/lfpmeloni"
+                href={LINKEDIN}
                 className="foot-link"
                 target="_blank"
                 rel="noreferrer noopener"
               >
                 LinkedIn
               </a>
-              <span className="copyright" suppressHydrationWarning>© {new Date().getFullYear()} All rights reserved.</span>
+              <span className="copyright" suppressHydrationWarning>© {new Date().getFullYear()} Felipe Meloni</span>
             </div>
           </div>
         </aside>

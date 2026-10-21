@@ -57,7 +57,7 @@
   --fg: #cccccc;
   --strong: #ffffff;
   --dim: #9d9d9d;
-  --dimmer: #6e7681;
+  --dimmer: #8b949e; /* lifted from #6e7681 for 4.5:1 on every panel */
   --faint: #3c3c3c;
   --accent: #569cd6; /* keyword blue */
   --link: #4ec9b0; /* type teal */
@@ -79,10 +79,10 @@
   --fg: #3b3b3b;
   --strong: #1f1f1f;
   --dim: #616161;
-  --dimmer: #6e7681;
+  --dimmer: #5f6670; /* darkened from #6e7681 for 4.5:1 on every panel */
   --faint: #d4d4d4;
   --accent: #0451a5;
-  --link: #267f99;
+  --link: #1f6f86; /* Light+ #267f99, darkened for 4.5:1 on fences */
   --code: #a31515;
   --dir: #795e26;
   --quote: #008000;
@@ -113,6 +113,19 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+/* Keyboard focus is always visible, in both themes. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* Inside scrolling panels an outer ring would be clipped; draw it inside instead. */
+.tree-file:focus-visible,
+.outline li a:focus-visible {
+  outline-offset: -2px;
 }
 
 .glyph {
@@ -521,6 +534,8 @@ a {
 
 .t-url {
   color: var(--dim);
+  /* Links never rely on color alone. */
+  border-bottom: 1px solid color-mix(in srgb, var(--dim) 35%, transparent);
 }
 
 .t-url:hover {
@@ -558,6 +573,11 @@ a {
 
 .t-fence {
   color: var(--dimmer);
+}
+
+/* Markdown tables: shown as source like everything else, in the same scroll box as a fence. */
+.table .line-table .code {
+  color: var(--fg);
 }
 
 .t-fenced {
@@ -684,11 +704,15 @@ a {
     width: min(82vw, 300px);
     z-index: 20;
     transform: translateX(-102%);
-    transition: transform 0.18s ease;
+    /* Hidden, not just off-screen, so closed menu links are out of the tab order. */
+    visibility: hidden;
+    transition: transform 0.18s ease, visibility 0s linear 0.18s;
   }
 
   .sidebar.open {
     transform: translateX(0);
+    visibility: visible;
+    transition: transform 0.18s ease;
     box-shadow: 0 0 40px var(--shadow);
   }
 

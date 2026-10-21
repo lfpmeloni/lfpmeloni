@@ -89,7 +89,14 @@ function inline(text: string, key: string, notes: Notes = new Map()): ReactNode[
     } else if (g.fnref) {
       const id = g.fnref.slice(2, -1);
       out.push(
-        <a key={k} id={`ref-${id}`} href={`#fn-${id}`} className="t-fnref" title={notes.get(id)}>
+        <a
+          key={k}
+          id={`ref-${id}`}
+          href={`#fn-${id}`}
+          className="t-fnref"
+          title={notes.get(id)}
+          aria-label={`Footnote ${id}`}
+        >
           {g.fnref}
         </a>,
       );
@@ -145,8 +152,8 @@ function parseLine(raw: string, n: number, notes: Notes, refs: Set<string>): Lin
           {refs.has(id) && (
             <>
               {" "}
-              <a href={`#ref-${id}`} className="t-fnback" aria-label="Back to the text">
-                ↩
+              <a href={`#ref-${id}`} className="t-fnback" aria-label={`Back to reference ${id}`}>
+                <span aria-hidden="true">↩</span>
               </a>
             </>
           )}
@@ -207,6 +214,61 @@ function parseLine(raw: string, n: number, notes: Notes, refs: Set<string>): Lin
   return { className: "line-text", content: inline(raw, key, notes) };
 }
 
+/** A table row: `| a | b |`. Tables are shown as source too, in a scroll box like a fence. */
+const TABLE_ROW = /^\s*\|.*\|\s*$/;
+const TABLE_DELIM = /^:?-{3,}:?$/;
+
+function cells(raw: string): string[] {
+  return raw
+    .trim()
+    .replace(/^\||\|$/g, "")
+    .split(/(?<!\\)\|/)
+    .map((c) => c.trim());
+}
+
+/**
+ * Column widths for one table, so the pipes line up whatever the spacing in the file.
+ * The source shows links in full, so the raw text length is also the visible length.
+ */
+function columnWidths(rows: string[][]): number[] {
+  const widths: number[] = [];
+  for (const row of rows) {
+    if (row.every((c) => TABLE_DELIM.test(c))) continue;
+    row.forEach((c, i) => (widths[i] = Math.max(widths[i] ?? 3, c.length)));
+  }
+  return widths;
+}
+
+function tableLine(row: string[], widths: number[], key: string, notes: Notes): ReactNode {
+  const delim = row.every((c) => TABLE_DELIM.test(c));
+  return (
+    <>
+      {widths.map((w, i) => {
+        const cell = row[i] ?? "";
+        const pad = " ".repeat(Math.max(0, w - cell.length));
+        return (
+          <span key={i}>
+            <span className="t-punct">{i === 0 ? "| " : " | "}</span>
+            {delim ? (
+              <span className="t-punct">
+                {cell.startsWith(":") ? ":" : "-"}
+                {"-".repeat(Math.max(0, w - 2))}
+                {cell.endsWith(":") ? ":" : "-"}
+              </span>
+            ) : (
+              <>
+                {inline(cell, `${key}-${i}`, notes)}
+                {pad}
+              </>
+            )}
+          </span>
+        );
+      })}
+      <span className="t-punct"> |</span>
+    </>
+  );
+}
+
 export function MarkdownSource({ source }: { source: string }) {
   const lines = source.split("\n");
   let inFence = false;
@@ -222,9 +284,31 @@ export function MarkdownSource({ source }: { source: string }) {
     else for (const r of raw.matchAll(FNREF)) refs.add(r[1]);
   }
 
-  /** Top-level children: plain lines, or a .fence wrapper holding a whole code block. */
+  /** Each table row's line index -> the widths of the table it belongs to. */
+  const tables = new Map<number, number[]>();
+  {
+    let inside = false;
+    let group: number[] = [];
+    const flush = () => {
+      if (group.length === 0) return;
+      const widths = columnWidths(group.map((i) => cells(lines[i])));
+      for (const i of group) tables.set(i, widths);
+      group = [];
+    };
+    lines.forEach((raw, i) => {
+      if (/^\s*```/.test(raw)) {
+        flush();
+        inside = !inside;
+      } else if (!inside && TABLE_ROW.test(raw)) group.push(i);
+      else flush();
+    });
+    flush();
+  }
+
+  /** Top-level children: plain lines, or a .fence wrapper holding a whole code block or table. */
   const blocks: ReactNode[] = [];
   let fence: ReactNode[] | null = null;
+  let table: ReactNode[] | null = null;
 
   lines.forEach((raw, idx) => {
     const n = idx + 1;
@@ -238,6 +322,11 @@ export function MarkdownSource({ source }: { source: string }) {
       };
     } else if (inFence) {
       line = { className: "line-fence", content: <span className="t-fenced">{raw}</span> };
+    } else if (tables.has(idx)) {
+      line = {
+        className: "line-table",
+        content: tableLine(cells(raw), tables.get(idx)!, `l${n}`, notes),
+      };
     } else {
       line = parseLine(raw, n, notes, refs);
     }
@@ -262,6 +351,19 @@ export function MarkdownSource({ source }: { source: string }) {
       </div>
     );
 
+    if (tables.has(idx)) {
+      (table ??= []).push(el);
+      if (!tables.has(idx + 1)) {
+        blocks.push(
+          <div key={`t${n}`} className="fence table" tabIndex={0} role="region" aria-label="Table">
+            {table}
+          </div>,
+        );
+        table = null;
+      }
+      return;
+    }
+
     if (isFence && !inFence) {
       fence = [el];
     } else if (fence) {
@@ -273,7 +375,7 @@ export function MarkdownSource({ source }: { source: string }) {
     if (isFence) {
       if (inFence && fence) {
         blocks.push(
-          <div key={`f${n}`} className="fence">
+          <div key={`f${n}`} className="fence" tabIndex={0} role="region" aria-label="Code block">
             {fence}
           </div>,
         );
@@ -284,7 +386,13 @@ export function MarkdownSource({ source }: { source: string }) {
   });
 
   // An unclosed fence still renders.
-  if (fence) blocks.push(<div key="f-open" className="fence">{fence}</div>);
+  if (fence) {
+    blocks.push(
+      <div key="f-open" className="fence" tabIndex={0} role="region" aria-label="Code block">
+        {fence}
+      </div>,
+    );
+  }
 
   return <div className="source">{blocks}</div>;
 }

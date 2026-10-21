@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: SITE_TITLE,
-    template: "%s — lfpmeloni.dev",
+    template: "%s | Felipe Meloni",
   },
   description: SITE_DESCRIPTION,
   authors: [{ name: "Felipe Meloni", url: SITE_URL }],

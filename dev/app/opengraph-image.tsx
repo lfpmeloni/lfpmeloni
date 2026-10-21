@@ -1,7 +1,8 @@
 import { ImageResponse } from "next/og";
+import { OG_IMAGE } from "@/lib/site";
 
-export const alt = "Felipe Meloni — Ask me to build anything";
-export const size = { width: 1200, height: 630 };
+export const alt = OG_IMAGE.alt;
+export const size = { width: OG_IMAGE.width, height: OG_IMAGE.height };
 export const contentType = "image/png";
 
 /** One social card for the whole site, in the VS Code Dark Modern palette. */
@@ -31,7 +32,7 @@ export default function OpengraphImage() {
           <span style={{ color: "#6E7681", marginRight: 24 }}>&gt;</span>Ask me to build anything.
         </div>
         <div style={{ display: "flex", fontSize: 28, marginTop: 56, color: "#DCDCAA" }}>
-          AI & Software Engineer · Full-Stack Product Development
+          AI & Software Engineer | Full-Stack Product Development
         </div>
       </div>
     ),
