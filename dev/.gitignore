@@ -7,3 +7,5 @@ next-env.d.ts
 
 # Personal files, never published
 etc/
+test-results/
+playwright-report/

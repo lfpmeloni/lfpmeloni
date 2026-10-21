@@ -1,0 +1,59 @@
+# Content lint, build and browser suite for lfpmeloni.dev on every push and pull request.
+# Vercel runs the same lint inside its build, so a lint failure also blocks the deploy there.
+name: site
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    name: test (${{ matrix.state }})
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # What the site serves today: the vercel.app host, noindex everywhere.
+          - state: noindex
+            env: {}
+          # What it serves once NEXT_PUBLIC_SITE_URL is the real domain in production.
+          - state: indexable
+            env: { NEXT_PUBLIC_SITE_URL: "https://lfpmeloni.dev", VERCEL_ENV: production, EXPECT_INDEXABLE: "1" }
+    env: ${{ matrix.env }}
+    defaults:
+      run:
+        working-directory: dev
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # the sitemap dates pages by their last commit
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: dev/package-lock.json
+      - run: npm ci
+      - run: npm run check:content
+      - run: npx next build
+      - run: npm run check:built
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:site
+      # Fail closed: a missing report, a skipped test or a flaky pass counts as a failure.
+      - name: Verify the test report
+        if: always()
+        run: |
+          node -e '
+            const fs = require("fs");
+            const f = "test-results/report.json";
+            if (!fs.existsSync(f)) { console.error("no test report"); process.exit(1); }
+            const s = JSON.parse(fs.readFileSync(f, "utf8")).stats;
+            console.log(s);
+            if (s.expected === 0 || s.unexpected || s.skipped || s.flaky) process.exit(1);
+          '
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-${{ matrix.state }}
+          path: dev/test-results
+          retention-days: 7
