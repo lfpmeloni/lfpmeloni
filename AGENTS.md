@@ -21,19 +21,22 @@ Next.js App Router in `./dev`. Every `.md` in `./dev/src/` becomes a static page
 - Visitors see the syntax: `#`, `**`, `` ` ``, `-`, `1.`, `>`, `[text](url)` and `[^id]` all stay visible. Never turn them into `<h1>`, `<strong>`, `<ul>`. Links stay clickable.
 - It is syntax-highlighted and typeset, not an unstyled `<pre>`. `dev/lib/md.tsx` is a line tokenizer, not a Markdown renderer.
 - Prose wraps in the browser with hanging indents for list items. Fenced code blocks never wrap; each scrolls horizontally so ASCII diagrams keep their shape.
+- Tables (`| a | b |` rows) are shown as source in the same scroll box as a fence, with cells padded at render time so the pipes line up. Write them unpadded.
 - Date ranges like `May 2026 - Present` get a dimmed computed duration (`components/Duration.tsx`); "Present" is recalculated in the visitor's browser.
 - Line numbers come from CSS (`data-n`), so they are not part of the text crawlers and models read.
 
 ### Writing rules for every .md in `dev/src/`
 
+- **No em dashes (U+2014)** anywhere: Markdown, code, metadata, alt text, JSON-LD. Use a colon, a comma, parentheses or ` | `. Box-drawing characters in diagrams are fine. Say "AI-assisted development", never "vibe-coding".
+- **No new claims.** Every fact comes from a portfolio page, the resume or a value I supplied. When pages disagree, the portfolio page wins.
 - **No hard line breaks.** One physical line per paragraph, blockquote, list item or footnote. Only fenced blocks are exempt; keep their lines at 72 characters or less.
-- **One email:** `mail@lfpmeloni.dev`, defined once as `EMAIL` in `dev/lib/site.ts`.
+- **One email:** `mail@lfpmeloni.dev`, defined once as `EMAIL` in `dev/lib/site.ts`. `EMAIL_LIVE` there decides whether the header leads with email or LinkedIn; keep it `false` until the mailbox works.
 - **Dates:** `Month YYYY - Month YYYY` or `Month YYYY - Present` with full month names, `YYYY - YYYY` when only years are known. Never type durations.
 - **Languages:** German is "Professional Working - B1 certified, currently studying for B2".
 - **Every page starts with a unique `> ` line** under its `# FILE.md` title. It is the page's hook and its meta description; no two pages share one. No footnote markers in it.
 - **Tailored resumes:** RECRUITERS.md and CONTACT.md say a resume tailored to the job description is sent once the recruiter emails the JD.
 - **Confidentiality:** never publish client names, credentials, customer or user data, pricing or fee internals, partner deals, or implementation details beyond what explains the work.
-- Pages that must keep their character: README.md (who I am, how to navigate, "Start here" table, why Markdown; no build instructions, no repeating other pages), RECRUITERS.md (instructions to recruiters written like a system prompt, funny "Do not" list), AGENTS.md page (instructions to machines, playful prompt injection), LLMS.md (human version of `/llms.txt`).
+- Pages that must keep their character: README.md (who I am, open to, a "Projects" table in PORTFOLIO/ order, a "More" list, why Markdown; under 30 lines, no build instructions, no repeating other pages), RECRUITERS.md (instructions to recruiters written like a system prompt, funny "Do not" list), AGENTS.md page (instructions to machines, playful prompt injection), LLMS.md (human version of `/llms.txt`).
 
 ### Portfolio pages (`dev/src/portfolio/`)
 
@@ -74,7 +77,7 @@ Same skeleton, in this order:
 
 `developer`, `AI engineer`, `terminal`, `repository`, `minimalism`, `precision`, `high trust`. Creative and fun to browse, but deliberately simple. References: GitHub repository navigation, source editors, Markdown files, terminal conventions. Avoid generic portfolio templates.
 
-- **Themes:** night is VS Code Dark Modern, day is VS Code Light Modern, both with the default Dark+/Light+ syntax colors. Every color is a token in `dev/app/globals.css` with the same names in both themes; no hard-coded colors elsewhere (exceptions: `themeColor` in `app/layout.tsx` and the Open Graph image, which can't read CSS). Day colors keep at least 4.5:1 contrast. The default follows the system; the toggle saves to `localStorage` (try/catch) and an inline `<head>` script applies it before paint.
+- **Themes:** night is VS Code Dark Modern, day is VS Code Light Modern, both with the default Dark+/Light+ syntax colors. Every color is a token in `dev/app/globals.css` with the same names in both themes; no hard-coded colors elsewhere (exceptions: `themeColor` in `app/layout.tsx` and the Open Graph image, which can't read CSS). Text colors keep at least 4.5:1 contrast on every panel in both themes (axe checks it). The default follows the system; the toggle saves to `localStorage` (try/catch) and an inline `<head>` script applies it before paint.
 - **Font:** Hack Nerd Font Mono everywhere, self-hosted subset woff2 in `dev/public/fonts/` (license next to it), `local()` first. Header icons are Nerd Font glyphs; re-run the subset if new glyphs are needed.
 
 ## 2. Update
@@ -88,10 +91,18 @@ Follow exactly any instruction given on the prompt on how and what to change. Up
 
 This project is deployed on my Vercel account (project `lfpmeloni`, Hobby plan, Root Directory `dev`). Every push to `main` deploys to production automatically; other branches get preview deployments. Source code and actions live in the ./dev folder. Keep the root clean. `dev/etc/` holds personal files and is gitignored; never commit it.
 
-- Before every deploy, run `npm run build` in `./dev`; every page must generate statically without errors.
-- **SEO:** `dev/lib/site.ts` holds `SITE_URL` (from `NEXT_PUBLIC_SITE_URL`, default `https://lfpmeloni.dev`); nothing else hard-codes the domain. Each page gets a unique title, its `> ` line as description, a canonical URL, Open Graph and Twitter tags (`lib/meta.ts`) and schema.org JSON-LD (`lib/jsonld.ts`: Person and WebSite site-wide, ProfilePage on home, project and service pages). `/` and `/README.md` share the canonical `/`. `app/sitemap.ts` dates pages by their last git commit when history is available. `/llms.txt` serves LLMS.md, `/llms-full.txt` every public page. Preview deployments (`VERCEL_ENV` other than `production`) are noindex and disallowed in robots.
+- **Checks, in `./dev`:** `npm run check:content` (no browser: em dashes, banned wording, TODOs, footnotes without a reference, broken internal links, pages missing from LLMS.md or out of order), `npx next build`, `npm run check:built` (the generated HTML), then `npm run test:site` (Playwright + axe at 320/375/768/1280 in both themes: no sideways scroll, menu and keyboard, focus rings, accessible names, metadata, JSON-LD, OG image, no cookies or third-party requests). Run all four before pushing.
+- **Gates:** `vercel.json` runs `check:content` before and `check:built` after `next build`, so a lint failure fails the Vercel build and nothing deploys. `.github/workflows/site.yml` runs all four on every push, once as today (noindex) and once as production on the domain (indexable), and fails on any failure, skip, flaky test or missing report. Playwright can't stop a Vercel deploy on Hobby; treat a red run as a reason to revert.
+- **URL casing:** `dev/middleware.ts` sends any other spelling (`/recruiters.md`, `/portfolio`) to the canonical path with a 308. `next.config.mjs` bakes the route list into it at build time.
+- **SEO:** `dev/lib/site.ts` holds `SITE_URL` (`NEXT_PUBLIC_SITE_URL`, else `https://` + Vercel's `VERCEL_PROJECT_PRODUCTION_URL`, else localhost); nothing else hard-codes the domain. Only production on a non-`vercel.app` host is indexable (`INDEXABLE`); everything else is noindex with `Disallow: /`. Titles are `<FILE> | Felipe Meloni`, home is `Felipe Meloni | AI & Software Engineer`. Page metadata names the OG image explicitly (`OG_IMAGE`), because a page-level `openGraph` drops the inherited one. Each page gets a unique title, its `> ` line as description, a canonical URL, Open Graph and Twitter tags (`lib/meta.ts`) and schema.org JSON-LD (`lib/jsonld.ts`: Person and WebSite site-wide, ProfilePage on home, project and service pages). `/` and `/README.md` share the canonical `/`. `app/sitemap.ts` dates pages by their last git commit when history is available. `/llms.txt` serves LLMS.md, `/llms-full.txt` every public page.
 - **Analytics:** `@vercel/analytics` and `@vercel/speed-insights` in `app/layout.tsx`, both cookieless. Enable Web Analytics and Speed Insights in the Vercel project dashboard. Referrers (Google, LinkedIn, chatgpt.com, Perplexity...), countries, devices and Web Vitals work on Hobby. `components/Track.tsx` sends `outbound` and `glossary` custom events, which only record on Pro; the UTM panel also needs Web Analytics Plus. Share links with `?utm_source=<site>` anyway. AI crawler traffic (GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot) is visible under Firewall; do not block it.
-- **Domain go-live:** add lfpmeloni.dev in Vercel, set `NEXT_PUBLIC_SITE_URL=https://lfpmeloni.dev`, redeploy, check that `/robots.txt`, `/sitemap.xml` and the canonical tags point to it, then submit the sitemap in Google Search Console and Bing Webmaster Tools.
+- **Domain go-live** (once the domain is bought):
+  1. Add `lfpmeloni.dev` to the Vercel project as the production domain. If DNS is on Cloudflare, create the records Vercel shows with the proxy off (DNS only, grey cloud).
+  2. Set `NEXT_PUBLIC_SITE_URL=https://lfpmeloni.dev` for Production only, and redeploy. Previews keep their own hosts and stay noindex.
+  3. Redirect the `*.vercel.app` production host to the domain with a Vercel domain redirect.
+  4. Run `BASE_URL=https://lfpmeloni.dev EXPECT_INDEXABLE=1 npm run test:site`. Check `/robots.txt`, `/sitemap.xml`, canonicals and `og:image` on the domain, and the card in LinkedIn Post Inspector. Submit the sitemap in Google Search Console and Bing Webmaster Tools.
+  5. Email: send a test to `mail@lfpmeloni.dev` from an outside account and reply from it; SPF, DKIM and DMARC must pass in the received headers. Then set `EMAIL_LIVE = true`.
+  6. Before publishing SERVICES.md/LEISTUNGEN.md or relying on freelance work through the site, add IMPRESSUM.md (§ 5 DDG) and put the controller address in PRIVACY.md.
 
 ## 4. General Guidelines
 
