@@ -2,59 +2,22 @@
 
 > The tools I actually use, not the ones I have heard of.
 
-## Core
+## Stack
 
-I work across the full stack and across the modern AI stack: Python, TypeScript, APIs, databases, cloud deployment, machine learning, LLM agents, RAG, MCP, vector search, local models, multimodal AI, image and video generation, workflow automation, and model integrations.
+| Category | Technologies |
+|---|---|
+| Primary development | Python, TypeScript, SQL |
+| AI engineering | LLM agents, MCP, tool orchestration, multimodal pipelines, structured outputs |
+| Backend and data | Next.js, FastAPI, Node.js, PostgreSQL, Supabase, DuckDB, Parquet |
+| Infrastructure | Vercel, Azure, Docker, GitHub Actions |
+| Testing and quality | Playwright, unit and SQL test harnesses, Sentry |
+| Previous experience | Lua, PHP, SAP QM, Oracle, Salesforce |
 
-## Languages
-
-- Python
-- TypeScript
-- SQL
-- C / C++
-- Lua
-- PHP
-
-## AI
-
-- LLM agents
-- Multi-agent systems
-- MCP servers and tool orchestration
-- RAG, embeddings, vector search
-- Prompt engineering and fine-tuning
-- Local models
-- Multimodal AI, image and video generation
-- Azure AI Foundry
-
-## Product & backend
-
-- Next.js
-- FastAPI
-- Flask
-- Supabase / PostgreSQL
-- Oracle DB
-- Auth and row-level security
-- Payments APIs
-- REST API design and integration
-
-## Infrastructure
-
-- Vercel
-- Azure
-- Docker
-- GitHub Actions CI/CD
-- Monitoring, logging, metrics
-
-## Enterprise
-
-- SAP QM
-- Salesforce Sales Cloud and Marketing Cloud
-- GMP-compliant / validated environments
+Every entry is backed by a [PORTFOLIO/](/PORTFOLIO/) page or a [RESUME.md](/RESUME.md) role.
 
 ## Ways of working
 
-- Certified Scrum Master (PSM I)
-- Backlog ownership and delivery roadmaps
-- Technical specifications from non-technical stakeholders
-- Testing, documentation, production support
-- AI coding tools used heavily to compress idea to production, while retaining ownership of architecture, engineering decisions, testing, integrations, and delivery
+- Certified Scrum Master (PSM I): backlog ownership and delivery roadmaps.
+- Technical specifications written from what laboratory, QA, sales or business stakeholders actually need.
+- Tests, release gates, documentation and production support are part of the work, not an extra.
+- AI-assisted development to compress the path from idea to production, while keeping ownership of architecture, engineering decisions, testing and delivery.

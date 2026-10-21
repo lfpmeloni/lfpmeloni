@@ -6,38 +6,47 @@ Felipe Meloni
 
 AI & Software Engineer | Full-Stack Product Development | Applied AI, ML & Automation
 
-Greater Karlsruhe Area
+Greater Karlsruhe Area, Germany
+
+EU citizen (Brazilian and Italian nationality), no sponsorship needed
 
 ## Summary
 
-I'm an AI & Software Engineer focused on turning ideas into working products, from the first architecture decision to deployment.
+I'm an AI & Software Engineer focused on turning ideas into working products, from the first architecture decision to deployment. Certified Scrum Master and Microsoft Azure AI Engineer Associate, with an MBA in Data Science and Analytics.
 
-Certified Scrum Master and Microsoft Azure AI Engineer Associate, with an MBA in Data Science and Analytics.
+My recent work spans very different problems: a full at-home veterinary marketplace live in production, an open-source, local-first financial analysis toolkit for AI agents (open-decade), an MCP server that makes US real-estate data available to AI assistants, and a song-to-video application orchestrating generative models through fal.ai. I rely on AI-assisted development to compress the path from idea to production, while keeping ownership of architecture, engineering decisions, testing and delivery. The tools are listed in [STACK.md](/STACK.md).
 
-My recent work spans very different problems: building and deploying a full at-home veterinary marketplace, developing an open agentic financial-advice platform, delivering an MCP server that makes US real-estate data available to AI agents, and building a song-to-video application orchestrating services such as Suno and fal.ai. My framework: understand the problem, choose the right tools, build the system, and ship it.
-
-I work across the full stack and across the modern AI stack: Python, TypeScript, APIs, databases, cloud deployment, machine learning, LLM agents, RAG, MCP, vector search, local models, multimodal AI, image and video generation, workflow automation, and model integrations. I use AI coding tools heavily to compress the path from idea to production, while retaining ownership of architecture, engineering decisions, testing, integrations, and delivery.
-
-My background combines hands-on engineering with product thinking and technical leadership. Before focusing heavily on AI-native product development, I built and led software and automation work in enterprise, fintech, marketplaces, and regulated environments, including a GMP-compliant Python platform integrated with Oracle and SAP QM.
-
-I am most interested in problems where the solution is not already obvious: new products, AI-native workflows, agentic systems, internal tools, integrations, prototypes that need to become real software, and ideas that need someone to figure out how to build them.
+Before that, I built and led software and automation work in enterprise, fintech, marketplaces and regulated environments, including a GMP-compliant Python platform integrated with Oracle and SAP QM.
 
 Ask me to build anything.
 
 ## Experience
 
-### Independent Venture
-
-**Independent Full-Stack & AI Engineer**
+### Independent: Founder-Engineer and Freelance AI Engineer
 
 May 2026 - Present
 
-Germany
+Germany (remote)
 
-- Own the architecture, product development, technology strategy, and go-to-market execution for an at-home veterinarian marketplace currently in private beta with real users
-- Build the platform with TypeScript, Next.js, Supabase/PostgreSQL, Auth, row-level security, payments APIs, Vercel, and GitHub Actions CI/CD
-- Design and implement the platform's AI capabilities, including RAG, embeddings, vector search, prompt engineering, fine-tuning, autonomous agents, and custom MCP servers
-- Built a customer-facing knowledge-base chatbot with grounded conversational flows and guardrails against ungrounded answers
+**vemkavet**, at-home veterinary marketplace, founder-engineer: [veterinary-marketplace.md](/PORTFOLIO/veterinary-marketplace.md)
+
+- Took the full loop from signup to booking, PIX or card payment, visit, medical record, review and payout to production as solo founder-engineer, live since July 2026 as an invite-only beta, on TypeScript, Next.js, Supabase/PostgreSQL with row-level security, Pagar.me and Vercel.
+- Delivered ~150 commits, 62 migrations, ~290 unit tests and 5 SQL test harnesses behind one release workflow from CI to promotion. Development runs on Claude Code with per-area skills, project rules and hooks that block unsafe database and secret operations; an AI vet copilot is on the roadmap.
+
+**realtor-mcp**, US housing-market data for AI assistants, freelance for a private client (September 2026 - October 2026): [real-estate-mcp.md](/PORTFOLIO/real-estate-mcp.md)
+
+- Built a read-only MCP server with five tools over 17 feeds from five public publishers, so chat assistants answer housing questions with cited data instead of made-up numbers (Python, FastMCP, DuckDB, Parquet, Vercel).
+- Automated a nightly GitHub Actions pipeline with validation gates and a live MCP smoke test before promotion; 47 tests plus a golden-questions suite.
+
+**song2video**, song, narration or script to finished video, freelance for a client (October 2026 - Present): [ai-video-pipeline.md](/PORTFOLIO/ai-video-pipeline.md)
+
+- Built a studio that turns an MP3 or a script into a subtitled 16:9 video, with all three modes running end to end in the client's deployment: a durable Vercel Workflow, an LLM screenplay planner with structured outputs, fal.ai models and FFmpeg in Vercel Sandbox.
+- Added realtor property tours with intake via web form and a remote MCP server, and a human approval step before any paid generation; about 130 tests.
+
+**open-decade**, open-source financial analysis toolkit for AI agents (October 2026 - Present): [financial-portfolio-agents.md](/PORTFOLIO/financial-portfolio-agents.md)
+
+- Building a local-first CLI, MCP server and browser app over one append-only vault, where every number is deterministic and traceable to its inputs; v0.1.0 in development.
+- 129 Node tests and 15 Chromium tests pass on the recorded release run, behind a release gate that fails closed on any skipped test or missing report.
 
 ### Tech Mahindra
 
@@ -53,11 +62,11 @@ Mannheim, Baden-Württemberg, Germany
 
 ### Upwork
 
-**AI & Automation Engineer**
+**Freelance AI & Automation Engineer (via Upwork)**
 
 September 2024 - May 2025
 
-Bruchsal, Baden-Württemberg, Germany
+Remote
 
 - Designed multi-agent automation systems for HR, Marketing, and Finance, combining LLM agents, tools, memory, retries, and asynchronous workflows across multiple agent frameworks.
 - Built agentic workflows with tools, memory, retries, background tasks, logging, and metrics; deployed them on Azure and Docker with FastAPI/Flask interfaces.
@@ -112,35 +121,27 @@ São Paulo, Brazil
 
 ## Education
 
+### USP/Esalq
+
+MBA, Data Science and Analytics · May 2023 - February 2024
+
 ### Universidade Federal do ABC
 
 Bachelor of Engineering (B.Eng.), Information Engineering · 2010 - 2015
-
-### MBA USP/Esalq
-
-MBA, MBA Data Science and Analytics · May 2023 - February 2024
-
-### Universidade Federal do ABC
 
 Bachelor of Science (B.S.), Science and Technology · 2010 - 2014
 
 ## Certifications
 
+- Microsoft Certified: Azure AI Engineer Associate (AI-102) · April 2026
+- Microsoft Certified: Azure AI Fundamentals (AI-900) · March 2026
 - Professional Scrum Master™ I (PSM I)
 - Python for Finance: Investment Fundamentals & Data Analytics
-- Microsoft Certified: Azure AI Fundamentals
-- GROWTH XPRINT IFOOD
-- Microsoft Certified: Azure AI Engineer Associate
+- Growth Xprint (iFood)
 
 ## Publications
 
 - Implementation of chat application for Ginga middleware technology using second screen.
-
-## Top Skills
-
-- Artificial Intelligence (AI)
-- Full-Stack Development
-- Software Development
 
 ## Languages
 
@@ -154,4 +155,5 @@ Bachelor of Science (B.S.), Science and Technology · 2010 - 2014
 - [LinkedIn](https://www.linkedin.com/in/lfpmeloni)
 - [GitHub](https://github.com/lfpmeloni)
 - [PORTFOLIO/](/PORTFOLIO/)
-- [STACK.md](/STACK.md)
+
+A PDF tailored to your job description is available on request: email the JD to mail@lfpmeloni.dev.

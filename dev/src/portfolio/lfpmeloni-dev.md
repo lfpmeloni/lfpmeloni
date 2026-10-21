@@ -30,7 +30,7 @@ Publishing is: edit a `.md` file, push, Vercel rebuilds.
       ▼
  lib/md.tsx ── line tokenizer (not a Markdown renderer):
       │        headings · quotes · lists · fences ·
-      │        inline code · links · date ranges
+      │        tables · inline code · links · date ranges
       ▼
  Next.js App Router ── static pages per file and per folder
       │                + sitemap · robots · llms.txt · Open Graph image
@@ -46,7 +46,8 @@ Publishing is: edit a `.md` file, push, Vercel rebuilds.
 - **Durations are computed, never typed.** Date ranges like `May 2026 - Present` get their length shown as a dimmed inlay hint[^5], the way an editor shows virtual text. Ranges ending in "Present" are recalculated in the browser, so the resume doesn't go stale between deploys.
 - **Two themes, one set of tokens.** Night and day are VS Code's default Dark Modern and Light Modern colors, the editor most visitors already know. A tiny inline script applies the saved theme before first paint, so there's no flash[^6].
 - **My terminal font.** Hack Nerd Font Mono[^7], self-hosted and subset[^8] to what the site uses (about 40 KB per weight). The header icons are Nerd Font glyphs, so there's no icon library.
-- **SEO from the content itself.** Each page's first `>` line is its meta description. Canonical URLs[^9], Open Graph[^10], JSON-LD[^11], sitemap and robots all come from one site-URL setting, and preview deployments are marked noindex[^12]. `/llms-full.txt` gives models every page in one file.
+- **SEO from the content itself.** Each page's first `>` line is its meta description. Canonical URLs[^9], Open Graph[^10], JSON-LD[^11], sitemap and robots all come from one site-URL setting. Previews and the temporary `vercel.app` host are marked noindex[^12], so only the real domain gets indexed. `/llms-full.txt` gives models every page in one file.
+- **Checks that fail the build.** A small Node script lints the content before every build: no em dashes, no TODOs, no footnote without a reference, no internal link to a missing page, every page listed in `/llms.txt`. If it fails, Vercel doesn't deploy. A Playwright suite then checks every page at phone and desktop widths in both themes: no sideways scroll, keyboard navigation, axe accessibility scans, metadata, structured data and that no cookies are set.
 - **Analytics without cookies.** Vercel Web Analytics and Speed Insights: page views, referrers and Core Web Vitals, counted with a daily-rotating anonymous hash instead of a cookie, so there's no consent banner.
 
 ### What broke and how I fixed it
@@ -56,7 +57,7 @@ Publishing is: edit a `.md` file, push, Vercel rebuilds.
 
 ## Outcome
 
-- **Works:** file-browser navigation, source view, day/night themes, computed durations, per-page SEO and structured data, `/llms.txt`, cookieless analytics.
+- **Works:** file-browser navigation, source view with tables, day/night themes, computed durations, per-page SEO and structured data, `/llms.txt`, cookieless analytics, a content lint in the build and a browser test suite in CI.
 - **Delivered:** the page you are reading.
 - **Still rough:** moving to the lfpmeloni.dev domain, and the GitHub profile README still has to be brought in line with the site.
 
@@ -67,7 +68,7 @@ Publishing is: edit a `.md` file, push, Vercel rebuilds.
 
 ## Stack
 
-`TypeScript` `Next.js` `React` `CSS` `Vercel` `Vercel Analytics` `Markdown`
+`TypeScript` `Next.js` `React` `CSS` `Vercel` `Vercel Analytics` `Markdown` `Playwright` `axe-core`
 
 ## Glossary for nerds
 

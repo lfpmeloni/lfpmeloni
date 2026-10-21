@@ -6,7 +6,7 @@
 
 `llms.txt` is a file at the root of a website that gives Large Language Models and AI agents a clean, structured map of its core content: what the site is, which pages matter, and where to find them. It is to models what `robots.txt` is to crawlers, except it is meant to be read, not obeyed.
 
-This site needs almost nothing from it, because every page is already Markdown source. There is no rendered layer to strip, no schema to infer, no JavaScript to execute.
+This site needs little from it, because every page is already a Markdown file. The map below and the full-text export give agents the same content without the page layout around it.
 
 ## The map
 
