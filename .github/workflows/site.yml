@@ -14,10 +14,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # What the site serves today: the vercel.app host, noindex everywhere.
+          # Previews and local builds: noindex everywhere.
           - state: noindex
             env: {}
-          # What it serves once NEXT_PUBLIC_SITE_URL is the real domain in production.
+          # Production on lfpmeloni.dev (NEXT_PUBLIC_SITE_URL in Vercel Production).
           - state: indexable
             env: { NEXT_PUBLIC_SITE_URL: "https://lfpmeloni.dev", VERCEL_ENV: production, EXPECT_INDEXABLE: "1" }
     env: ${{ matrix.env }}

@@ -1,6 +1,7 @@
 /**
- * Single source for site-wide constants. Set NEXT_PUBLIC_SITE_URL (Production only) when the
- * custom domain goes live; until then every absolute URL points at the deployed Vercel host.
+ * Single source for site-wide constants. NEXT_PUBLIC_SITE_URL is https://lfpmeloni.dev in Vercel
+ * Production only and is inlined at build time, so a change needs a redeploy. Previews and local
+ * builds fall back to the Vercel host or localhost.
  */
 const vercelHost = process.env.VERCEL_PROJECT_PRODUCTION_URL;
 
@@ -29,12 +30,13 @@ export const LINKEDIN = "https://www.linkedin.com/in/lfpmeloni";
 
 export const GITHUB = "https://github.com/lfpmeloni";
 
-/** Flip to true once mail@lfpmeloni.dev sends and receives; the header then leads with email. */
-export const EMAIL_LIVE = false;
+/** mail@lfpmeloni.dev sends and receives, so the header leads with email. */
+export const EMAIL_LIVE = true;
 
 /**
- * Only production on its own domain is indexed. Previews, local builds and the *.vercel.app
- * host stay noindex with `Disallow: /`, so the temporary host never competes with the domain.
+ * Only production on its own domain is indexed. Previews and local builds stay noindex with
+ * `Disallow: /`. middleware.ts also marks any other host serving a production build (the
+ * *.vercel.app aliases) noindex, so they never compete with the domain.
  */
 export const INDEXABLE =
   process.env.VERCEL_ENV === "production" && !new URL(SITE_URL).hostname.endsWith(".vercel.app") &&

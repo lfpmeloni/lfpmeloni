@@ -2,7 +2,7 @@
 
 > This website, documented like the other projects: a CV and portfolio that recruiters and machines read from the same Markdown files, shown as source.
 
-- Status: live on a Vercel preview, moving to lfpmeloni.dev
+- Status: live on lfpmeloni.dev
 - Period: October 2026 - Present
 - Role: everything, which is the point
 - Links: [github.com/lfpmeloni/lfpmeloni](https://github.com/lfpmeloni/lfpmeloni)
@@ -59,7 +59,7 @@ Publishing is: edit a `.md` file, push, Vercel rebuilds.
 
 - **Works:** file-browser navigation, source view with tables, day/night themes, computed durations, per-page SEO and structured data, `/llms.txt`, cookieless analytics, a content lint in the build and a browser test suite in CI.
 - **Delivered:** the page you are reading.
-- **Still rough:** moving to the lfpmeloni.dev domain, and the GitHub profile README still has to be brought in line with the site.
+- **Still rough:** the GitHub profile README still has to be brought in line with the site.
 
 ## Evidence
 
