@@ -18,6 +18,8 @@ export const metadata: Metadata = {
   description: SITE_DESCRIPTION,
   authors: [{ name: "Felipe Meloni", url: SITE_URL }],
   robots: INDEXABLE ? undefined : { index: false, follow: false },
+  // Bing Webmaster Tools ownership, same code as public/BingSiteAuth.xml.
+  verification: { other: { "msvalidate.01": "892BE68D503427DF499FEE7E543ED0F3" } },
   openGraph: {
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
